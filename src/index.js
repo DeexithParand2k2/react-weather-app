@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { configureStore } from '@reduxjs/toolkit';
+//provider from react-redux must
+import { Provider } from 'react-redux';
+import forecastReducer from './features/forecast';
+
+const mystore = configureStore({
+  reducer:{
+    forecast: forecastReducer,
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={mystore}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
